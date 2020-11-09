@@ -1,6 +1,7 @@
 package com.blockbusterREST.blockbusterRest.controller;
 
 import com.blockbusterREST.blockbusterRest.domain.Movie;
+import com.blockbusterREST.blockbusterRest.dto.MovieDto;
 import com.blockbusterREST.blockbusterRest.service.MovieService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,13 @@ public class MovieController {
     public ResponseEntity<Movie> findMovieById(@PathVariable Long id){
         Movie movie = movieService.findMovieById(id);
         return new ResponseEntity<Movie>(movie,HttpStatus.OK);
+    }
+
+    @GetMapping("/title/{title}")
+    public ResponseEntity<Movie> findMovieByName(@PathVariable String title){
+        Movie movie = this.movieService.findMovieByTitle(title);
+        return new ResponseEntity<Movie>(movie,HttpStatus.OK);
+
     }
 
 

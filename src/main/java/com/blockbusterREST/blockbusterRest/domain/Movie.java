@@ -21,7 +21,7 @@ public class Movie {
     @Column(name = "runtime")
     private int runtime;
     @Column(name = "rating")
-    private double rating;
+    private float rating;
     @Column(name = "votes")
     private int votes;
     @Column(name = "image_url")
@@ -84,11 +84,11 @@ public class Movie {
         this.year = year;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
