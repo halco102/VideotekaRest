@@ -9,5 +9,5 @@ public interface MovieService {
 
     List<Movie> findAllMovies();
     Movie findMovieById(Long id);
-    Movie findMovieByTitle(String title);
+    List<Movie> findMovieByTitle(String title);
 }
