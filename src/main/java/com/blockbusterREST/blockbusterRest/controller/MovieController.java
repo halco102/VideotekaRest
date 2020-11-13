@@ -43,6 +43,11 @@ public class MovieController {
 
     }
 
+    @GetMapping("/order/runtime")
+    public ResponseEntity<List<MovieDto>> orderByRuntime(){
+        return this.movieService.orderByRuntime();
+    }
+
 
 
 
