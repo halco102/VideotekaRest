@@ -48,6 +48,7 @@ public class MovieServiceImpl implements MovieService {
         return this.movieRepository.findMovieByTitle(title);
     }
 
+
     @Override
     public ResponseEntity<List<MovieDto>> orderByRuntime() {
         List<Movie> movies = this.movieRepository.orderMoviesByRuntime();

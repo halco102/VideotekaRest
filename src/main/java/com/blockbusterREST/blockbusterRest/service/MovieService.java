@@ -10,6 +10,8 @@ public interface MovieService {
 
     List<Movie> findAllMovies();
     Movie findMovieById(Long id);
-    Movie findMovieByTitle(String title);
+    List<Movie> findMovieByTitle(String title);
+    ResponseEntity<Movie> saveMovie(Movie movie);
+    void deleteMovieById(Long id);
     ResponseEntity<List<MovieDto>> orderByRuntime();
 }
