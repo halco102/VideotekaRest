@@ -33,7 +33,18 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie findMovieByTitle(String title) {
+    public ResponseEntity<Movie> saveMovie(Movie movie) {
+        Movie tempMovie = movieRepository.save(movie);
+        return new ResponseEntity<Movie>(tempMovie, HttpStatus.OK);
+    }
+
+    @Override
+    public void deleteMovieById(Long id) {
+        movieRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Movie> findMovieByTitle(String title) {
         return this.movieRepository.findMovieByTitle(title);
     }
 
