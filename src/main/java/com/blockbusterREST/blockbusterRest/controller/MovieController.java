@@ -63,5 +63,10 @@ public class MovieController {
         return this.movieService.saveMovie(movie);
     }
 
+    @GetMapping("/order/rating")
+    public ResponseEntity<List<Movie>> orderByRating(){
+        List<Movie> movies = this.movieService.orderByRating();
+        return new ResponseEntity<List<Movie>>(movies,HttpStatus.OK);
+    }
 
 }

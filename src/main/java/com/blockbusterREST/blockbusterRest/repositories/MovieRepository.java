@@ -18,4 +18,7 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
     @Query(value = "Select * from movie order by title", nativeQuery = true)
     public List<Movie> orderByTitle();
 
+    @Query(value = "Select * from movie order by rating desc",nativeQuery = true)
+    public List<Movie> orderByRating();
+
 }
