@@ -33,4 +33,5 @@ public class CountryServiceImpl implements CountryService {
         List<Country> countries = this.countryRepository.findAll();
         return new ResponseEntity<List<Country>>(countries,HttpStatus.OK);
     }
+
 }
