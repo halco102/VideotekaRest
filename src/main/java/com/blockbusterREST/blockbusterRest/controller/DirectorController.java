@@ -29,4 +29,7 @@ public class DirectorController {
     public ResponseEntity<List<Director>> getAllDirectors(){
         return this.directorService.getALlDirectors();
     }
+
+
+
 }
