@@ -18,4 +18,6 @@ public interface MovieService {
     List<Movie> orderByTitle();
     List<Movie> orderByRating();
 
+    ResponseEntity<Movie> addDirector(Long movieId, Long directorId);
+
 }

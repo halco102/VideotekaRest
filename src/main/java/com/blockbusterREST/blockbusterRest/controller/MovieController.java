@@ -1,7 +1,9 @@
 package com.blockbusterREST.blockbusterRest.controller;
 
+import com.blockbusterREST.blockbusterRest.domain.Director;
 import com.blockbusterREST.blockbusterRest.domain.Movie;
 import com.blockbusterREST.blockbusterRest.dto.MovieDto;
+import com.blockbusterREST.blockbusterRest.service.DirectorService;
 import com.blockbusterREST.blockbusterRest.service.MovieService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,11 @@ import java.util.List;
 public class MovieController {
 
     public static final String HOME_URL = "/api/v1";
-
+    private DirectorService directorService;
     private final MovieService movieService;
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, DirectorService directorService)
+    {
+        this.directorService =directorService;
         this.movieService = movieService;
     }
 
@@ -70,6 +74,10 @@ public class MovieController {
         return new ResponseEntity<List<Movie>>(movies,HttpStatus.OK);
     }
 
+    @PostMapping("/add/director")
+    public ResponseEntity<Movie> addDirector(@PathVariable Long movieId, @PathVariable Long directorId){
+        return this.movieService.addDirector(movieId,directorId);
+    }
 
 
 }

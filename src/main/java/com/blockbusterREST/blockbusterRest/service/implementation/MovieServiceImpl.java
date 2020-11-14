@@ -4,6 +4,7 @@ import com.blockbusterREST.blockbusterRest.domain.Director;
 import com.blockbusterREST.blockbusterRest.domain.Movie;
 import com.blockbusterREST.blockbusterRest.dto.MovieDto;
 import com.blockbusterREST.blockbusterRest.mapper.MovieMapper;
+import com.blockbusterREST.blockbusterRest.repositories.DirectorRepository;
 import com.blockbusterREST.blockbusterRest.repositories.MovieRepository;
 import com.blockbusterREST.blockbusterRest.service.MovieService;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,11 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
     private final MovieMapper movieMapper;
-
-    public MovieServiceImpl(MovieRepository movieRepository, MovieMapper movieMapper) {
+    private final DirectorRepository directorRepository;
+    public MovieServiceImpl(MovieRepository movieRepository, MovieMapper movieMapper, DirectorRepository directorRepository) {
         this.movieRepository = movieRepository;
         this.movieMapper = movieMapper;
+        this.directorRepository = directorRepository;
     }
 
     @Override
@@ -65,5 +67,20 @@ public class MovieServiceImpl implements MovieService {
         List<Movie> movies = this.movieRepository.orderMoviesByRuntime();
         List<MovieDto> movieDtos = movieMapper.listToDto(movies);
         return new ResponseEntity<List<MovieDto>>(movieDtos, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Movie> addDirector(Long movieId, Long directorId) {
+        Director director = directorRepository.findById(directorId).get();
+        Movie movie = movieRepository.findById(movieId).get();
+        if(movie.getDirectors().equals(director)){
+            System.out.println("That director is already in this Movie");
+            return null;
+        }else {
+            movie.directors.add(director);
+            movieRepository.save(movie);
+            return new ResponseEntity<Movie>(movie,HttpStatus.OK);
+        }
+
     }
 }
