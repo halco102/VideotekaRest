@@ -19,6 +19,12 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public ResponseEntity<City> saveCity(City city) {
+        for(City city1 : this.cityRepository.findAll()){
+            if (city1.getName().contains(city.getName())){
+                System.out.println("City already exists");
+                return null;
+            }
+        }
         City tempCity = this.cityRepository.save(city);
         return new ResponseEntity<City>(tempCity, HttpStatus.OK);
     }
