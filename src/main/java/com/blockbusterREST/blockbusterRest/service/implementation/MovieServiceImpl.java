@@ -1,5 +1,6 @@
 package com.blockbusterREST.blockbusterRest.service.implementation;
 
+import com.blockbusterREST.blockbusterRest.domain.Director;
 import com.blockbusterREST.blockbusterRest.domain.Movie;
 import com.blockbusterREST.blockbusterRest.dto.MovieDto;
 import com.blockbusterREST.blockbusterRest.mapper.MovieMapper;

@@ -1,5 +1,6 @@
 package com.blockbusterREST.blockbusterRest.service;
 
+import com.blockbusterREST.blockbusterRest.domain.Director;
 import com.blockbusterREST.blockbusterRest.domain.Movie;
 import com.blockbusterREST.blockbusterRest.dto.MovieDto;
 import org.springframework.http.ResponseEntity;

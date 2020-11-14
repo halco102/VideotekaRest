@@ -11,17 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/movies")
+@RequestMapping(MovieController.HOME_URL)
 public class MovieController {
 
-    private final MovieService movieService;
+    public static final String HOME_URL = "/api/v1";
 
+    private final MovieService movieService;
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
 
 
-    @GetMapping("")
+    @GetMapping("/movies")
     public ResponseEntity<List<Movie>> getAllMovies (){
         List<Movie> movies = movieService.findAllMovies();
         return new ResponseEntity<List<Movie>>(movies, HttpStatus.OK);
@@ -68,5 +69,7 @@ public class MovieController {
         List<Movie> movies = this.movieService.orderByRating();
         return new ResponseEntity<List<Movie>>(movies,HttpStatus.OK);
     }
+
+
 
 }
