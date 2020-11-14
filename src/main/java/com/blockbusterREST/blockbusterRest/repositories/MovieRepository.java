@@ -15,4 +15,7 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
     @Query(value = "Select * from movie order by runtime", nativeQuery = true)
     public List<Movie> orderMoviesByRuntime();
 
+    @Query(value = "Select * from movie order by title", nativeQuery = true)
+    public List<Movie> orderByTitle();
+
 }

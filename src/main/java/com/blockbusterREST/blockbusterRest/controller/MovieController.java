@@ -6,10 +6,7 @@ import com.blockbusterREST.blockbusterRest.service.MovieService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,7 +45,23 @@ public class MovieController {
         return this.movieService.orderByRuntime();
     }
 
+    @GetMapping("/order/title")
+    public ResponseEntity<List<Movie>> orderByTitle(){
+        List<Movie> movies = this.movieService.orderByTitle();
+        return new ResponseEntity<List<Movie>>(movies,HttpStatus.OK);
+    }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable Long id)
+    {
+        movieService.deleteMovieById(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie){
+        return this.movieService.saveMovie(movie);
+    }
 
 
 }

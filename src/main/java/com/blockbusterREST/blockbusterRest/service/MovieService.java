@@ -14,4 +14,6 @@ public interface MovieService {
     ResponseEntity<Movie> saveMovie(Movie movie);
     void deleteMovieById(Long id);
     ResponseEntity<List<MovieDto>> orderByRuntime();
+    List<Movie> orderByTitle();
+
 }
